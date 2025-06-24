@@ -13,11 +13,13 @@ All Python dependencies are listed in `requirements.txt`.
 ## Usage
 
 1. Install the dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
 
 2. Edit `send_temperature_vn.py` and update the following variables with your configuration:
+
    - `token`: your InfluxDB API token.
    - `org`: your InfluxDB organization name.
    - `bucket`: the bucket where temperature data will be stored.

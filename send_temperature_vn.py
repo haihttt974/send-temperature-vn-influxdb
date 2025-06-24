@@ -49,7 +49,7 @@ while True:
                 now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 if not os.path.exists("result.csv") or os.path.getsize("result.csv") == 0:
                     writer.writerow(["time", "city", "message"])  # tiêu đề nếu chưa có
-                writer.writerow([now, CITY, f"Gui nhiet do thuc te: {nhiet_do}°C"])
+                writer.writerow([now, CITY, f"{nhiet_do}°C"])
 
         else:
             print("❌ Lỗi khi gọi API: 'main'")
