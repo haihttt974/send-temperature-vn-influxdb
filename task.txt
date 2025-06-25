@@ -1,0 +1,60 @@
+----------------------------------------------------------------------
+📌 CẤU TRÚC ĐỀ TÀI:
+Chương 1: Giới thiệu đề tài
+Chương 2: Time-series Database
+Chương 3: InfluxDB
+Chương 4: Flux Query Language
+Chương 5: Ứng dụng quản lý nhiệt độ
+Chương 6: Đánh giá & kết luận
+
+----------------------------------------------------------------------
+👤 LÊ DUY HẢI: PHỤ TRÁCH LÝ THUYẾT VÀ NỀN TẢNG
+- Nội dung:
+  + Chương 1: Giới thiệu đề tài
+  + Chương 2: Time-series Database
+  + Chương 3: InfluxDB
+
+- Chuẩn bị:
+  + Nắm định nghĩa, đặc điểm TSDB
+  + Lịch sử, cấu trúc dữ liệu InfluxDB (Bucket, Measurement, Tag, Field)
+  + So sánh TSDB vs RDBMS, sơ đồ kiến trúc
+
+- Câu hỏi có thể gặp:
+  + TSDB khác gì RDBMS?
+  + InfluxDB hoạt động ra sao?
+  + Dữ liệu được lưu như thế nào?
+
+----------------------------------------------------------------------
+👤 NGUYỄN ĐỨC TIẾN: PHỤ TRÁCH TRUY VẤN & KỸ THUẬT
+- Nội dung:
+  + Chương 4: Flux Query Language
+  + Một phần chương 5: Script Python gửi dữ liệu
+
+- Chuẩn bị:
+  + Viết và giải thích các truy vấn Flux cơ bản
+  + Giải thích đoạn mã gửi nhiệt độ vào InfluxDB
+  + Biết cấu trúc dữ liệu: measurement, tag, field
+
+- Câu hỏi có thể gặp:
+  + Flux là gì? Tại sao dùng?
+  + Câu truy vấn trung bình theo giờ như nào?
+  + Script hoạt động thế nào?
+
+----------------------------------------------------------------------
+👤 PHẠM NGỌC TRAI: PHỤ TRÁCH ỨNG DỤNG & TRÌNH BÀY
+- Nội dung:
+  + Phần còn lại chương 5: Ứng dụng quản lý nhiệt độ
+  + Chương 6: Đánh giá & kết luận
+  + Demo slide hoặc InfluxDB UI / Grafana
+
+- Chuẩn bị:
+  + Sơ đồ kiến trúc hệ thống: Python → InfluxDB → giao diện
+  + Demo truy vấn và biểu đồ nhiệt độ
+  + Nêu ưu điểm, nhược điểm và hướng phát triển
+
+- Câu hỏi có thể gặp:
+  + Hệ thống hoạt động ra sao?
+  + Có thể ứng dụng thực tế không?
+  + Trực quan hóa dữ liệu như nào?
+
+----------------------------------------------------------------------
