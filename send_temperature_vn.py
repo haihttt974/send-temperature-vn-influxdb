@@ -4,8 +4,8 @@ import requests
 import time
 import csv
 import os
-from datetime import datetime
-
+from datetime import datetime, timezone
+import pytz
 
 # ====== Thông tin kết nối InfluxDB ======
 token = "mytoken123"
@@ -30,31 +30,37 @@ if not file_exists:
         writer = csv.writer(f)
         writer.writerow(["time", "city", "message"])  # Tiêu đề
 
-# ====== Gửi dữ liệu nhiệt độ thực tế mỗi 5 giây ======
+# ====== Gửi dữ liệu mỗi 5 giây ======
 while True:
     try:
         res = requests.get(URL)
         data = res.json()
-        #print(data)  # ✅ In toàn bộ dữ liệu để bạn dễ debug
 
         if "main" in data:
             nhiet_do = data["main"]["temp"]
-            point = Point("temperature_data").field("value", nhiet_do)
+
+            # Thời gian hiện tại theo UTC
+            local_time = datetime.now()
+            utc_time = pytz.timezone("Asia/Ho_Chi_Minh").localize(local_time).astimezone(pytz.utc)
+
+            # Gửi vào InfluxDB với tag city
+            point = Point("temperature_data")\
+                .tag("city", CITY)\
+                .field("value", nhiet_do)\
+                .time(utc_time)
+
             write_api.write(bucket=bucket, org=org, record=point)
-            print(f"✅ Gửi nhiệt độ thực tế: {nhiet_do}°C")
-            
-                # Ghi vào file result.csv
+            print(f"✅ Gửi: {local_time.strftime('%Y-%m-%d %H:%M:%S')} - {nhiet_do}°C")
+
+            # Ghi vào CSV
             with open("result.csv", mode='a', newline='', encoding='utf-8') as f:
                 writer = csv.writer(f)
-                now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                if not os.path.exists("result.csv") or os.path.getsize("result.csv") == 0:
-                    writer.writerow(["time", "city", "message"])  # tiêu đề nếu chưa có
-                writer.writerow([now, CITY, f"{nhiet_do}"])
+                writer.writerow([local_time.strftime("%Y-%m-%d %H:%M:%S"), CITY, f"{nhiet_do}"])
 
         else:
-            print("❌ Lỗi khi gọi API: 'main'")
-            print("Không lấy được dữ liệu. Bỏ qua lần này.")
+            print("❌ Không lấy được dữ liệu từ API.")
+
     except Exception as e:
         print(f"❌ Lỗi: {e}")
-    
+
     time.sleep(5)
